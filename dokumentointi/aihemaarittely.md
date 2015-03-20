@@ -1,7 +1,5 @@
 // Aihe: 
 
-ilmoittautumisj‰rjestelm‰ Toteutetaan j‰rjestelm‰, jonka avulla yll‰pidet‰‰n tietojenk‰sittelylaitoksen kurssitietoja sek‰ tietoja kursseille ilmoittautuneista opiskelijoista... [lis‰‰ teksti‰ 1-2 tekstikappaleen verran]
-
 CardGame on korttipeli-kokoelma josta pelaaja voi valita haluamansa korttipelin. Ensimm‰isen‰ lis‰yksen‰ on yksin pelattava pasianssi-variaatio, jonka j‰lkeen lis‰‰ pelimuotoja voidaan lis‰t‰. 
 
 Pistetilastot voitetuille ja h‰vityille peleille tulee myˆs listata, jotta pelaaja voi seurata edistymist‰‰n.
