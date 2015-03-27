@@ -6,35 +6,58 @@ import java.util.Iterator;
 
 public class CardDeck {
     
-    private ArrayList<Card> deck;
-    public int cardCount;
+    private ArrayList deck;
+    public int cardCount; // Amount of cards in play.
     
-    public CardDeck() {
-    
-    this.deck = new ArrayList<Card>();
-    
-    for (int i=0; i<13; i++) { //Asettaa pakkaan 52 korttia, jokainen eri kortti.
-        
-        CardValue value = CardValue.values()[i];
-        
-        for (int x=0; x<4; x++) { // 13 korttia * 4 maata.
-            Card card = new Card(value, CardSuit.values()[x]);
-            this.deck.add(card);
-            this.cardCount++;
-        }
+    public CardDeck() { // Create an empty deck.
+        deck = new ArrayList();
+        cardCount = 0;
     }
     
-    Collections.shuffle(deck);  //Sekoittaa kaikki kortit satunnaiseen järjestykseen.
-    
-    Iterator<Card> cardIterator = deck.iterator();
-    
-    while (cardIterator.hasNext()) {
-            Card card = cardIterator.next();
-     //     System.out.println(card.getCardValue() + " of " + card.getCardSuit()); // Prinnttaa kaikki kortit.
-        }
+    public void addCard(Card card) { // Add a card to the deck.
+        deck.add(card);
     }
     
-    public int getDeckSize() {
-        return this.cardCount;
+    public Card dealCard() {         // Deal a single card.
+      if (cardCount >= deck.size()) // If deck has no cards left, return null
+         return null;              // else get a card and increase cardCount.
+      else                           
+         return (Card) deck.get(cardCount++);
     }
+    
+    public int getDeckSize() {  // Get size of full deck.
+        return deck.size();
+    }
+    
+    public int getRemainingCards() { // Get amount of cards left in the deck.
+        return deck.size() - cardCount;
+    }
+    
+    public boolean hasCards() { // Check if deck still contains cards.
+        if(cardCount >= deck.size()) 
+            return true;
+        else 
+            return false;
+    }    
+    
+    public void fillDeck() {
+        Iterator suitIterator = CardSuit.VALUES.iterator();
+		while ( suitIterator.hasNext() ) {
+		    CardSuit suit = (CardSuit) suitIterator.next();
+		    Iterator rankIterator = CardValue.VALUES.iterator();
+		    while ( rankIterator.hasNext() ) {
+		        CardValue value = (CardValue) rankIterator.next();	        
+		        Card card = new Card( suit, value);
+		        addCard(card);
+		    }
+		}
+    }
+    
+    public void shuffleDeck() { // Shuffle the cards in the deck.
+        Collections.shuffle(deck);
+    }
+
+    public void resetDeck() {
+        cardCount = 0;
+    }  
 }

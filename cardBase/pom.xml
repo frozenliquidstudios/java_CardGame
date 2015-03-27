@@ -42,10 +42,10 @@
 		<version>1.1.4</version>
 		<configuration>
 			<targetClasses>
-				<param>cardBase.cardBase.*</param>
+				<param>cardBase.*</param>
 			</targetClasses>
 			<targetTests>
-				<param>cardBase.cardBase.*</param>
+				<param>cardBase.*</param>
 			</targetTests>
 		</configuration>
 	</plugin>

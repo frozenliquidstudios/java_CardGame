@@ -1,6 +1,5 @@
 cardBase\CardValue.class
 cardBase\Card.class
-cardBase\GameMode.class
-cardBase\CardDeck.class
 cardBase\CardSuit.class
 cardBase\Main.class
+cardBase\GameMode.class
