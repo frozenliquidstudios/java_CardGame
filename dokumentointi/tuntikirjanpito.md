@@ -11,3 +11,10 @@
 24.03 - 1h - Lis‰ilin toiminnallisuudet Array listien avittamana.
 26.03 - 2h - Lis‰ilin lis‰‰ toiminnallisuuksia kuten korttien lis‰yksen, jaon ja k‰den jossa on kortteja.
 27.03 - 4h - Lis‰sin kaikkiin luokkiin lis‰‰ toiminnallisuutta ja comparable rajapinnan korttien parempaa sorttausta, sekoitusta ja jakamista varten. T‰m‰ mahdollistaa arvojen muuntelut kuten esim. ‰ss‰ = 1 eik‰ 14, tai 2 on korkein kortti etc.
+01.04 - 1h - Koitin saada kuvat n‰kym‰‰n, no progress.. fuck.
+03.04 - 4h - Koitin saada kortti kuvat n‰kym‰‰n, onnistuu ainoastaan koko polun k‰ytˆll‰...
+04.04 - 5h - Korttikuvat toimivat vihdoin halutusti omfg! Took a while.
+05.04 - 2h - Aloitin simppelin GUI:n tekemisen.
+08.04 - 2h - Jatkoin GUI:ta ja sain yhdistetty‰ napit ja kuvat testi interfaceen.
+09.04 - 2h - Aloitin ensimm‰isen simppelin pelimuodon tekemisen, melkein valmis.
+10.04 - 4h - Sain pelimuodon ja GUI:n valmiiksi, en saa pelimuotoa alustettua oikein Jframessa. No idea how to do that... Katotaan huomenna uudestaan.
