@@ -28,13 +28,45 @@ public class CardDeckTest {
     }
   
     @Test
-    public void tyhjaPakka() {
+    public void emptyDeck() {
         assertTrue(deck.getDeckSize() == 0);
-    }
-    
+    }   
     @Test 
-    public void taysiPakka() {
+    public void fullDeck() {
         deck.fillDeck();
         assertTrue(deck.getDeckSize() == 52);
     } 
+    @Test 
+    public void addAcard() {
+        Card card = deck.dealCard();
+        deck.addCard(card);
+        assertTrue(deck.getDeckSize() == 1);
+    }
+    @Test 
+    public void dealAcard() {
+        Card card = deck.dealCard();
+        deck.addCard(card);
+        assertTrue(deck.getDeckSize() == 1);
+    }
+    @Test 
+    public void cardsLeftinDeck() {
+        deck.fillDeck();
+        deck.dealCard();
+        deck.dealCard();
+        deck.dealCard();
+        assertTrue(deck.getRemainingCards() == 49);
+    }
+    @Test 
+    public void deckHasCardsLeftInIt() {
+        Card card = deck.dealCard();
+        deck.addCard(card);
+        assertTrue(deck.hasCards() == true);
+    }
+    @Test 
+    public void deckHasNoCardsLeftInIt() {
+        Card card = deck.dealCard();
+        deck.addCard(card);
+        deck.dealCard();
+        assertTrue(deck.hasCards() == false);
+    }
 }

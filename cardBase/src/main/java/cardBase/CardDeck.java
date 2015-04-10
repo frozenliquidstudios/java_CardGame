@@ -49,7 +49,7 @@ public class CardDeck extends JApplet{
     
     /**
      *
-     * @return Get size of full deck.
+     * @return Get size of deck.
      */
     public int getDeckSize() {
         return deck.size();
@@ -68,11 +68,11 @@ public class CardDeck extends JApplet{
      * @return Check if deck still contains cards.
      */
     public boolean hasCards() { 
-        if(cardCount >= deck.size()) 
+        if(cardCount < deck.size()) 
             return true;
         else 
             return false;
-    }    
+    }
     
     /**
      * Fill deck with 52 cards, all unique.
