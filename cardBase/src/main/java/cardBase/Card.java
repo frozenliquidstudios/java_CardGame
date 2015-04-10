@@ -3,43 +3,83 @@ package cardBase;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 
+/**
+ *
+ * @author LiQuid
+ */
 public class Card implements Comparable {
     private CardSuit  suit;
     private CardValue value;
     private BufferedImage image;
     private static boolean sortByValue = true;
     
+    /**
+     *
+     * @param card_suit     Suit of the card (clubs, spades, diamonds, hearts) 
+     * @param card_value    Value of the card (1-14)
+     * @param card_image    Image file used in GUI
+     */
     public Card (CardSuit card_suit, CardValue card_value, BufferedImage card_image) {
         suit  = card_suit;
         value = card_value;
         image = card_image;
     }
     
-    public CardSuit getCardSuit() { //return card suit
+    /**
+     *
+     * @return The card's suit
+     */
+    public CardSuit getCardSuit() {
         return suit;
     }
       
-    public CardValue getCardValue() { //return card value
+    /**
+     *
+     * @return The card's value
+     */
+    public CardValue getCardValue() {
         return value;
     }
     
+    /**
+     *
+     * @param suit  Card suit for filename
+     * @param value Card value for filename
+     * @return The specific filename located in cardImages folder 
+     */
     public static String getImageFilename( CardSuit suit, CardValue value ) {
         return suit.getSuitAcronym() + value.getValueAcronym() + ".png";
     }
     
+    /**
+     *
+     * @return Buffered image of a specific card to be used in GUI
+     */
     public BufferedImage getCardImage() {
         return image;
     }
     
+    /**
+     *
+     * @return Cards value in integer form for easier comparison
+     */
     public int getCardIntValue() {
         return value.getCardInt();
     }
     
-    public String suitToString() { //print card suit
+    /**
+     *
+     * @return prints suit name
+     */
+    public String suitToString() { 
         return suit.toString();
     }
     
-    public String valueToString() { //print card value
+    /**
+     *
+     * @return prints card value
+     */
+    public String valueToString() {
         return value.toString();
     }
     
@@ -47,15 +87,26 @@ public class Card implements Comparable {
         return value.toString() + " of " + suit.toString();
    }
     
-    public static void sortCardsBySuit() { //card sorting aid for deck and shuffle
+    /**
+     *  card sorting aid for deck and shuffle
+     */
+    public static void sortCardsBySuit() { 
             sortByValue = false;
     }
     
-    public static void sortCardsByValue() { //card sorting aid for deck and shuffle
+    /**
+     *  card sorting aid for deck and shuffle
+     */
+    public static void sortCardsByValue() { 
             sortByValue = true;
     }
     
-    public boolean sameAs( Card card ) { //compares suit and value to another card object.
+    /**
+     *
+     * @param card card object to compare with
+     * @return compares suit and value to another card object.
+     */
+    public boolean sameAs( Card card ) {
       if ( ( value != card.value ) || ( suit != card.suit ) )
          return false;
       else

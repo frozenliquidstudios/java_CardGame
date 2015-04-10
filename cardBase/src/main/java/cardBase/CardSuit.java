@@ -3,6 +3,10 @@ package cardBase;
 import java.util.Arrays;
 import java.util.Collections;
 
+/**
+ *
+ * @author LiQuid
+ */
 public final class CardSuit implements Comparable {
     private String name;    // full name of suit
     private String acronym; // acronym of the suit, used in the image files
@@ -13,15 +17,39 @@ public final class CardSuit implements Comparable {
     }
     
     // All card suits
-    public final static CardSuit SPADES   = new CardSuit("Spades",   "s");
+
+    /**
+     *
+     */
+        public final static CardSuit SPADES   = new CardSuit("Spades",   "s");
+
+    /**
+     *
+     */
     public final static CardSuit CLUBS    = new CardSuit("Clubs",    "c");
+
+    /**
+     *
+     */
     public final static CardSuit DIAMONDS = new CardSuit("Diamonds", "d");
+
+    /**
+     *
+     */
     public final static CardSuit HEARTS   = new CardSuit("Hearts",   "h");
 
+    /**
+     *
+     * @return
+     */
     public String getSuit() {
        return name;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getSuitAcronym() {
         return acronym;
     }
@@ -32,7 +60,11 @@ public final class CardSuit implements Comparable {
     }
     
     // All suits in a list for comparison.
-    public final static java.util.List VALUES = 
+ 
+    /**
+     *
+     */
+        public final static java.util.List VALUES = 
         Collections.unmodifiableList(Arrays.asList( new CardSuit[] { SPADES, CLUBS, DIAMONDS, HEARTS }));
    
     @Override
