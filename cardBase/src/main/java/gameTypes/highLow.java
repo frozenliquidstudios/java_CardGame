@@ -3,6 +3,10 @@ package gameTypes;
 import GUI.game_highLow;
 import cardBase.*;
 
+/**
+ *
+ * @author LiQuid
+ */
 public class highLow extends game_highLow {
  
       private int gamesPlayed = 0;     
@@ -18,6 +22,10 @@ public class highLow extends game_highLow {
 //      private double averageScore = sumOfScores / gamesPlayed;
       private static Boolean gameOver = false;
 
+    /**
+     *
+     * @return
+     */
     public static int playHighLow() {
    
         CardDeck deck = new CardDeck();
@@ -56,18 +64,32 @@ public class highLow extends game_highLow {
       return correctGuesses;
    }
     
+    /**
+     *
+     * @return
+     */
     public static Card getCurrentCard() {
         return currentCard;
     }
     
+    /**
+     *
+     * @return
+     */
     public static Card getNextCard() {
         return nextCard;
     }
     
+    /**
+     *
+     */
     public static void chooseHigh() {
         currentGuess = "high";
     }
     
+    /**
+     *
+     */
     public static void chooseLow() {
         currentGuess = "low";
     }
