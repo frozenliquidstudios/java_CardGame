@@ -13,7 +13,7 @@ public class Main {
  public static void main(String[] args) {
         
         CardDeck deck = new CardDeck();
-        deck.fillDeck();
+    //  deck.fillDeck();
         System.out.println("Pakassa on " + deck.getDeckSize() + " korttia.");
         GameMode mode = new GameMode();
         mode.setGameMode("Pokeri");       

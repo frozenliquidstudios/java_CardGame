@@ -1,16 +1,21 @@
 package cardBase;
 
+import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
+
 public class Card implements Comparable {
-    private CardSuit suit;
+    private CardSuit  suit;
     private CardValue value;
+    private BufferedImage image;
     private static boolean sortByValue = true;
     
-    public Card (CardSuit card_suit, CardValue card_value) {
-        suit = card_suit;
+    public Card (CardSuit card_suit, CardValue card_value, BufferedImage card_image) {
+        suit  = card_suit;
         value = card_value;
+        image = card_image;
     }
     
-    public CardSuit getCardSuit() { // return card suit
+    public CardSuit getCardSuit() { //return card suit
         return suit;
     }
       
@@ -18,7 +23,19 @@ public class Card implements Comparable {
         return value;
     }
     
-    public String suitToString() {  //print card suit
+    public static String getImageFilename( CardSuit suit, CardValue value ) {
+        return suit.getSuitAcronym() + value.getValueAcronym() + ".png";
+    }
+    
+    public BufferedImage getCardImage() {
+        return image;
+    }
+    
+    public int getCardIntValue() {
+        return value.getCardInt();
+    }
+    
+    public String suitToString() { //print card suit
         return suit.toString();
     }
     
@@ -26,7 +43,7 @@ public class Card implements Comparable {
         return value.toString();
     }
     
-    public String toString() {      //print card suit and value
+    public String toString() { //print card suit and value
         return value.toString() + " of " + suit.toString();
    }
     
