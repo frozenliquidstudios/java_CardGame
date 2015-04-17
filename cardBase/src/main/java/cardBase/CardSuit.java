@@ -21,7 +21,7 @@ public final class CardSuit implements Comparable {
     /**
      *
      */
-        public final static CardSuit SPADES   = new CardSuit("Spades",   "s");
+    public final static CardSuit SPADES   = new CardSuit("Spades",   "s");
 
     /**
      *

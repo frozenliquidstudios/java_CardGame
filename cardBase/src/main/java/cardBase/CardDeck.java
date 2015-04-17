@@ -10,10 +10,6 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JApplet;
 
-/**
- *
- * @author LiQuid
- */
 public class CardDeck extends JApplet{
     
     private ArrayList deck;

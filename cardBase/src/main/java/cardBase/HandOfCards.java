@@ -3,45 +3,40 @@ package cardBase;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- *
- * @author LiQuid
- */
 public abstract class HandOfCards implements Comparable {
     private ArrayList hand;
 
     /**
-     *
-     * @param card
+     * Adds a card to the hand.
+     * @param card card to be added
      */
-    public void addCard(Card card) { // Adds a card to the hand.
+    public void addCard(Card card) { 
         hand.add(card);
     }
     
     /**
-     *
-     * @param cardNumber
-     * @return
+     * @param cardNumber Get a card from the hand according to cardNumber.
+     * @return the requested card
      */
-    public Card getCard(int cardNumber) { // Get a card from the hand according to cardNumber.
+    public Card getCard(int cardNumber) {
         return (Card) hand.get(cardNumber);
     }
     
     /**
      *
-     * @param cardNumber
-     * @return
+     * @param cardNumber Remove card from hand according to cardNumber.
+     * @return the requested card
      */
-    public Card removeCard( int cardNumber) { // Remove card from hand according to cardNumber.
+    public Card removeCard( int cardNumber) {
         return (Card) hand.remove(cardNumber);
     }
     
     /**
      *
-     * @param card
-     * @return
+     * @param card Remove card from hand according to the cards' index, if proper number is given.
+     * @return the requested card
      */
-    public Card removeCard( Card card ) { // Remove card from hand according to the cards' index.
+    public Card removeCard( Card card ) { 
         int cardNumber = hand.indexOf(card);
         if ( cardNumber < 0 )
           return null;
@@ -50,32 +45,32 @@ public abstract class HandOfCards implements Comparable {
     }
     
     /**
-     *
+     *  Remove all cards from hand.
      */
-    public void emptyHand() { // Remove all cards from hand.
+    public void emptyHand() {
       hand.clear();
     }
     
     /**
      *
-     * @return
+     * @return Get amount of cards in hand.
      */
-    public int getHandSize() { // Get amount of cards in hand.
+    public int getHandSize() {
         return hand.size();
     }
     
     /**
      *
-     * @return
+     * @return Check if hand has cards in it.
      */
-    public boolean hasCards() { // Check if hand has cards in it.
+    public boolean hasCards() { 
         return hand.isEmpty();
     }
     
     /**
-     *
+     * Sort cards in hand.
      */
-    public void sort() { // Sort card in hand.
+    public void sort() { 
         Collections.sort(hand);
     }
     
@@ -90,25 +85,26 @@ public abstract class HandOfCards implements Comparable {
      
     /**
      *
-     * @param card
+     * @param card Checks to see if card is in hand and if it is, returns its' index.
      * @return
      */
-    public int findCard(Card card) { // Checks to see if card is in hand and if it is, returns its' index.
+    public int findCard(Card card) {
         return hand.indexOf(card);
     }
     
     /**
      *
-     * @param oldCard
+     * @param oldCard   Checks if hand contains wanted oldCard.
+     *                  If doesn't find, returns false.
      * @param newCard
-     * @return
+     * @return If new card is found, replaces card and returns true.
      */
     public boolean replaceCard(Card oldCard, Card newCard) { // Replaces oldCard with newCard from the hand.
-        int loc = findCard(oldCard); //Checks if hand contains wanted oldCard.
+        int loc = findCard(oldCard); 
         if (loc < 0)
-           return false;            //If doesn't find, returns false.
+           return false;            
         hand.set(loc, newCard);
-        return true;                // If found, replaces card and returns true.
+        return true;                 
     }
     
     @Override
@@ -119,11 +115,11 @@ public abstract class HandOfCards implements Comparable {
     
     /**
      *
-     * @return
+     * @return Prints out cards in hand.
      */
     public abstract int evaluateHand();
     
-    public String toString() { // Prints out cards in hand.
+    public String toString() { 
         return hand.toString();
     }
      

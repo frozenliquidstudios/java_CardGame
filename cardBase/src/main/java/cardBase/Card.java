@@ -1,12 +1,12 @@
 package cardBase;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author LiQuid
- */
 public class Card implements Comparable {
     private CardSuit  suit;
     private CardValue value;
@@ -61,6 +61,23 @@ public class Card implements Comparable {
     
     /**
      *
+     * @return get image representing back of the card
+     */
+    public BufferedImage getCardBackImage() {
+        
+        String imageFile = "src/main/java/cardImages/back.png";   // Stores image filename.
+                    BufferedImage img = null; // Initializes image as null.
+                    try {
+                        img = ImageIO.read(new File(imageFile));    // Places proper image path to img variable
+                    }
+                    catch (IOException e) {
+                        e.printStackTrace();  // Traces any errors
+                    }
+        return img;                   
+    }
+    
+    /**
+     *
      * @return Cards value in integer form for easier comparison
      */
     public int getCardIntValue() {
@@ -80,11 +97,19 @@ public class Card implements Comparable {
      * @return prints card value
      */
     public String valueToString() {
-        return value.toString();
+        return value.getValue();
     }
     
     public String toString() { //print card suit and value
         return value.toString() + " of " + suit.toString();
+    }
+    
+    /**
+     *
+     * @return
+     */
+    public String toStringWithIntegers() { //print card suit and numerical version of value
+        return value.getCardInt() + " of " + suit.toString();
    }
     
     /**
