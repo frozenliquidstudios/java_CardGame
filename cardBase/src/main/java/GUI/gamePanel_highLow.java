@@ -12,15 +12,29 @@ import javax.swing.ImageIcon;
 
 public class gamePanel_highLow extends javax.swing.JPanel {
     
-    highLow game = new highLow();
-    int playedGame = 2;
+    private highLow game = new highLow();
+    private boolean playedGame;
+    
     
     /**
      * Initializes the game view and makes restart button invisible
      */
     public gamePanel_highLow() {
         initComponents();
-        restartButton.setVisible(false);
+        Card card = game.getCurrentCard();
+                BufferedImage cardIMG = card.getCardBackImage();
+                Image scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
+                cardImage.setIcon(new ImageIcon(scaledCard));
+                lowerButton.setVisible      (false);
+                higherButton.setVisible     (false);
+                text_or.setVisible          (false);
+                text_willTheNext.setVisible (false);
+                text_cardBe.setVisible      (false);
+                text_Score.setVisible       (false);
+                score.setVisible            (false);
+                finalScore.setVisible       (true);
+                restartButton.setText("start playing!");
+                restartButton.setVisible    (true);
     }
 
     /**
@@ -39,9 +53,10 @@ public class gamePanel_highLow extends javax.swing.JPanel {
         text_or = new javax.swing.JLabel();
         higherButton = new javax.swing.JButton();
         text_willTheNext = new javax.swing.JLabel();
-        score = new javax.swing.JLabel();
+        finalScore = new javax.swing.JLabel();
         currentCard = new javax.swing.JLabel();
         restartButton = new javax.swing.JButton();
+        score = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(850, 550));
         setLayout(null);
@@ -88,13 +103,12 @@ public class gamePanel_highLow extends javax.swing.JPanel {
         add(text_willTheNext);
         text_willTheNext.setBounds(90, 350, 161, 24);
 
-        score.setFont(new java.awt.Font("04b03", 0, 65)); // NOI18N
-        score.setText("0");
-        add(score);
-        score.setBounds(530, 450, 70, 60);
+        finalScore.setFont(new java.awt.Font("04b03", 0, 40)); // NOI18N
+        finalScore.setToolTipText("");
+        add(finalScore);
+        finalScore.setBounds(330, 470, 360, 40);
 
         currentCard.setFont(new java.awt.Font("04b_19", 0, 18)); // NOI18N
-        currentCard.setText("current card");
         add(currentCard);
         currentCard.setBounds(420, 300, 320, 30);
 
@@ -107,84 +121,105 @@ public class gamePanel_highLow extends javax.swing.JPanel {
         });
         add(restartButton);
         restartButton.setBounds(280, 340, 410, 80);
+
+        score.setFont(new java.awt.Font("04b03", 0, 65)); // NOI18N
+        score.setText("0");
+        add(score);
+        score.setBounds(540, 450, 110, 60);
     }// </editor-fold>//GEN-END:initComponents
 
     private void lowerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lowerButtonActionPerformed
-        Card card = game.getCurrentCard();        
-        BufferedImage cardIMG = card.getCardImage();
-        Image scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
-        cardImage.setIcon(new ImageIcon(scaledCard));        
         
-        currentCard.setText(game.getCurrentCard().toString() + " [" + game.getCurrentCard().getCardIntValue() + "]");
-               
-        playedGame = game.chooseLow();        
-        
-            if(playedGame == 0) {
-                score.setText("---");
-                cardIMG = card.getCardBackImage();
-                scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
-                cardImage.setIcon(new ImageIcon(scaledCard));             
-                lowerButton.setVisible(false);
-                higherButton.setVisible(false);
-                text_or.setVisible(false);
-                restartButton.setVisible(true);
-                currentCard.setText("final score: " + game.getCurrentScore());
-                game = new highLow();
+        playedGame = game.chooseLow();
+    
+        if(playedGame == true) {
+                Card card = game.getCurrentCard();
+                BufferedImage cardIMG = card.getCardBackImage();
+                Image scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
+                cardImage.setIcon(new ImageIcon(scaledCard));
+                lowerButton.setVisible      (false);
+                higherButton.setVisible     (false);
+                text_or.setVisible          (false);
+                text_willTheNext.setVisible (false);
+                text_cardBe.setVisible      (false);
+                text_Score.setVisible       (false);
+                score.setVisible            (false);
+                finalScore.setVisible       (true);
+                restartButton.setText("play again?");
+                restartButton.setVisible    (true);
+                finalScore.setText("final score: " + game.getCurrentScore());
             }
             else {
                 score.setText(game.getCurrentScore() + "");
-            }
+            } 
+        
+        Card card = game.getCurrentCard();        
+        BufferedImage cardIMG = card.getCardImage();
+        Image scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
+        cardImage.setIcon(new ImageIcon(scaledCard));
+        currentCard.setText(game.getCurrentCard().toString() + " [" + game.getCurrentCard().getCardIntValue() + "]");                    
     }//GEN-LAST:event_lowerButtonActionPerformed
 
     private void higherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_higherButtonActionPerformed
-        Card card = game.getCurrentCard();        
-        BufferedImage cardIMG = card.getCardImage();
-        Image scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
-        cardImage.setIcon(new ImageIcon(scaledCard));        
         
-        currentCard.setText(game.getCurrentCard().toString() + " [" + game.getCurrentCard().getCardIntValue() + "]");
-               
         playedGame = game.chooseHigh();
-        
-            if(playedGame == 0) {
-                score.setText("---");
-                cardIMG = card.getCardBackImage();
-                scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
-                cardImage.setIcon(new ImageIcon(scaledCard));             
-                lowerButton.setVisible(false);
-                higherButton.setVisible(false);
-                text_or.setVisible(false);
-                restartButton.setVisible(true);               
-                currentCard.setText("final score: " + game.getCurrentScore());
-                game = new highLow();
+    
+        if(playedGame == true) {
+                Card card = game.getCurrentCard();
+                BufferedImage cardIMG = card.getCardBackImage();
+                Image scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
+                cardImage.setIcon(new ImageIcon(scaledCard));
+                lowerButton.setVisible      (false);
+                higherButton.setVisible     (false);
+                text_or.setVisible          (false);
+                text_willTheNext.setVisible (false);
+                text_cardBe.setVisible      (false);
+                text_Score.setVisible       (false);
+                score.setVisible            (false);
+                finalScore.setVisible       (true);
+                restartButton.setText("play again?");
+                restartButton.setVisible    (true);
+                finalScore.setText("final score: " + game.getCurrentScore());
             }
             else {
                 score.setText(game.getCurrentScore() + "");
-            }
-            
+            } 
+        
+        Card card = game.getCurrentCard();        
+        BufferedImage cardIMG = card.getCardImage();
+        Image scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
+        cardImage.setIcon(new ImageIcon(scaledCard));
+        currentCard.setText(game.getCurrentCard().toString() + " [" + game.getCurrentCard().getCardIntValue() + "]");    
+        
     }//GEN-LAST:event_higherButtonActionPerformed
 
     private void restartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restartButtonActionPerformed
-                lowerButton.setVisible(true);
-                higherButton.setVisible(true);
-                text_or.setVisible(true);
-                restartButton.setVisible(false);
+                lowerButton.setVisible      (true);
+                higherButton.setVisible     (true);
+                text_or.setVisible          (true);
+                text_willTheNext.setVisible (true);
+                text_cardBe.setVisible      (true);
+                text_Score.setVisible       (true);
+                score.setVisible            (true);
+                finalScore.setVisible       (false);
+                restartButton.setVisible    (false);        
+                playedGame = false;
                 
+                game = new highLow();
                 Card card = game.getCurrentCard();
                 BufferedImage cardIMG = card.getCardImage();
                 Image scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
                 cardImage.setIcon(new ImageIcon(scaledCard));
                 
                 currentCard.setText(game.getCurrentCard().toString() + " [" + game.getCurrentCard().getCardIntValue() + "]");
-                
-                playedGame = 2;              
-                game = new highLow();
+                score.setText(game.getCurrentScore() + "");
     }//GEN-LAST:event_restartButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel cardImage;
     private javax.swing.JLabel currentCard;
+    private javax.swing.JLabel finalScore;
     private javax.swing.JButton higherButton;
     private javax.swing.JButton lowerButton;
     private javax.swing.JButton restartButton;
