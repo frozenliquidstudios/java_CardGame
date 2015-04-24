@@ -15,10 +15,9 @@ public class mainMenu extends javax.swing.JPanel {
      */
     public mainMenu() {
         initComponents();
-    //  cardImage.setIcon(new ImageIcon("C:/Users/LiQuid/java_CardGame/cardBase/src/main/java/cardImages/back.png"));
-        deck = new CardDeck();
-        deck.fillDeck();       
-        cardCount.setText(deck.getRemainingCards() + "");
+        deck.fillDeck(); 
+        deck.shuffleDeck();
+        cardCount.setText(deck.getRemainingCards() + ""); 
     }
 
     /**
@@ -150,12 +149,13 @@ public class mainMenu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void dealCardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dealCardBtnActionPerformed
+        
         Card card = deck.dealCard();
         BufferedImage cardIMG = card.getCardImage();
         Image scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
         cardImage.setIcon(new ImageIcon(scaledCard));
         cardCount.setText(deck.getRemainingCards() + "");
-
+        card = deck.dealCard();
         if ( deck.getRemainingCards() == 0 )
         dealCardBtn.setEnabled(false);
     }//GEN-LAST:event_dealCardBtnActionPerformed

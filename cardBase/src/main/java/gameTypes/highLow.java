@@ -1,6 +1,17 @@
 package gameTypes;
 
 import cardBase.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
 
 public class highLow {
       
@@ -9,7 +20,8 @@ public class highLow {
       private Card currentCard;
       private Card nextCard;      
       private Boolean gameOver;
-      private String answer;
+      private ArrayList finalScores = new ArrayList();
+      
     
     /**
      * Initializes the game
@@ -23,11 +35,11 @@ public class highLow {
         currentCard = deck.dealCard();
         nextCard = null;
     }
-  
+    
     public Card getCurrentCard() {
         return currentCard;
     }
-
+    
     public Card getNextCard() {
         return nextCard;
     }
@@ -81,7 +93,8 @@ public class highLow {
             }
         currentCard = nextCard;
         return gameOver;
-    } 
+    }  
+    
 }
 
 
