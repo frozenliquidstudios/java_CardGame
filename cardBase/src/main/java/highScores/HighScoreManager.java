@@ -55,7 +55,7 @@ public class HighScoreManager {
                     outputStream.close();
                 }
             } catch (IOException e) {
-                System.out.println("[Laad] IO Error: " + e.getMessage());
+                System.out.println("IO Error: " + e.getMessage());
             }
         }
     }

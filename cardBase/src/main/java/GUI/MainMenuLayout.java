@@ -1,6 +1,7 @@
 package GUI;
 
 import GUI.*;
+import highScores.HighScoreManager;
 import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -24,6 +25,15 @@ public class MainMenuLayout {
         panelContainer.add(mainMenu, "mainMenu");
         panelContainer.add(game_highLow, "highLow");       
         cl.show(panelContainer, "mainMenu");
+        
+        HighScoreManager scores = new HighScoreManager();
+        scores.addScore("CoolKid",240);
+        scores.addScore("KidCool",300);
+        scores.addScore("Dude",220);
+        scores.addScore("Mayne",100);
+        scores.addScore("YOYO",270);
+
+        System.out.print(scores.getHighscoreString());
         
         frame.add(panelContainer);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
