@@ -1,8 +1,11 @@
 package GUI;
 
+import static GUI.MainMenuLayout.show_main_menu;
 import cardBase.*;
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import gameTypes.highLow;
+import highScores.HighScoreManager;
+import java.awt.CardLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -13,6 +16,7 @@ import javax.swing.ImageIcon;
 public class gamePanel_highLow extends javax.swing.JPanel {
     
     private highLow game = new highLow();
+    private HighScoreManager scores = new HighScoreManager();
     private boolean playedGame;
     
     
@@ -32,6 +36,9 @@ public class gamePanel_highLow extends javax.swing.JPanel {
         text_cardBe.setVisible      (false);
         text_Score.setVisible       (false);
         score.setVisible            (false);
+        score_popupJPanel.setVisible(false);
+        score_popup_name.setVisible (false);
+        score_popup_title.setVisible(false);
         finalScore.setVisible       (true);
         restartButton.setText("start playing!");
         restartButton.setVisible    (true);
@@ -46,6 +53,11 @@ public class gamePanel_highLow extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        score_popupJPanel = new javax.swing.JPanel();
+        saveScoreJbutton = new javax.swing.JButton();
+        namefield = new javax.swing.JTextField();
+        score_popup_name = new javax.swing.JLabel();
+        score_popup_title = new javax.swing.JLabel();
         cardImage = new javax.swing.JLabel();
         text_Score = new javax.swing.JLabel();
         text_cardBe = new javax.swing.JLabel();
@@ -57,12 +69,52 @@ public class gamePanel_highLow extends javax.swing.JPanel {
         currentCard = new javax.swing.JLabel();
         restartButton = new javax.swing.JButton();
         score = new javax.swing.JLabel();
-        score_popupJPanel = new javax.swing.JPanel();
-        saveScoreJbutton = new javax.swing.JButton();
-        namefield = new javax.swing.JTextField();
+        backToMenu = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(850, 550));
         setLayout(null);
+
+        score_popupJPanel.setBackground(new java.awt.Color(0, 204, 0));
+        score_popupJPanel.setLayout(null);
+
+        saveScoreJbutton.setBackground(new java.awt.Color(0, 204, 102));
+        saveScoreJbutton.setFont(new java.awt.Font("04b03", 0, 24)); // NOI18N
+        saveScoreJbutton.setForeground(new java.awt.Color(255, 255, 255));
+        saveScoreJbutton.setText("GO");
+        saveScoreJbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveScoreJbuttonActionPerformed(evt);
+            }
+        });
+        score_popupJPanel.add(saveScoreJbutton);
+        saveScoreJbutton.setBounds(150, 140, 80, 40);
+
+        namefield.setFont(new java.awt.Font("04b03", 0, 24)); // NOI18N
+        namefield.setToolTipText("");
+        namefield.setName(""); // NOI18N
+        namefield.setVerifyInputWhenFocusTarget(false);
+        namefield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                namefieldActionPerformed(evt);
+            }
+        });
+        score_popupJPanel.add(namefield);
+        namefield.setBounds(100, 70, 240, 50);
+
+        score_popup_name.setFont(new java.awt.Font("04b03", 0, 30)); // NOI18N
+        score_popup_name.setForeground(new java.awt.Color(255, 255, 255));
+        score_popup_name.setText("name:");
+        score_popupJPanel.add(score_popup_name);
+        score_popup_name.setBounds(10, 80, 90, 30);
+
+        score_popup_title.setFont(new java.awt.Font("04b03", 0, 36)); // NOI18N
+        score_popup_title.setForeground(new java.awt.Color(255, 255, 255));
+        score_popup_title.setText("NEW HIGHSCORE!");
+        score_popupJPanel.add(score_popup_title);
+        score_popup_title.setBounds(40, 10, 300, 40);
+
+        add(score_popupJPanel);
+        score_popupJPanel.setBounds(310, 140, 360, 190);
         add(cardImage);
         cardImage.setBounds(450, 120, 130, 160);
 
@@ -113,7 +165,7 @@ public class gamePanel_highLow extends javax.swing.JPanel {
 
         currentCard.setFont(new java.awt.Font("04b_19", 0, 18)); // NOI18N
         add(currentCard);
-        currentCard.setBounds(420, 300, 320, 30);
+        currentCard.setBounds(400, 300, 320, 30);
 
         restartButton.setFont(new java.awt.Font("04b03", 0, 36)); // NOI18N
         restartButton.setText("start again?");
@@ -130,31 +182,15 @@ public class gamePanel_highLow extends javax.swing.JPanel {
         add(score);
         score.setBounds(540, 450, 110, 60);
 
-        score_popupJPanel.setBackground(new java.awt.Color(153, 153, 153));
-        score_popupJPanel.setLayout(null);
-
-        saveScoreJbutton.setFont(new java.awt.Font("04b03", 0, 24)); // NOI18N
-        saveScoreJbutton.setText("save score");
-        saveScoreJbutton.addActionListener(new java.awt.event.ActionListener() {
+        backToMenu.setFont(new java.awt.Font("04b03", 1, 48)); // NOI18N
+        backToMenu.setText("<-");
+        backToMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveScoreJbuttonActionPerformed(evt);
+                backToMenuActionPerformed(evt);
             }
         });
-        score_popupJPanel.add(saveScoreJbutton);
-        saveScoreJbutton.setBounds(100, 80, 180, 40);
-
-        namefield.setFont(new java.awt.Font("04b03", 0, 24)); // NOI18N
-        namefield.setText("type your nick here...");
-        namefield.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                namefieldActionPerformed(evt);
-            }
-        });
-        score_popupJPanel.add(namefield);
-        namefield.setBounds(50, 20, 279, 50);
-
-        add(score_popupJPanel);
-        score_popupJPanel.setBounds(310, 150, 360, 130);
+        add(backToMenu);
+        backToMenu.setBounds(0, 0, 90, 40);
     }// </editor-fold>//GEN-END:initComponents
 
     private void lowerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lowerButtonActionPerformed
@@ -173,12 +209,25 @@ public class gamePanel_highLow extends javax.swing.JPanel {
                 text_cardBe.setVisible      (false);
                 text_Score.setVisible       (false);
                 score.setVisible            (false);
-                finalScore.setVisible       (true);
+                finalScore.setVisible       (true);                              
                 restartButton.setText("play again?");
-                restartButton.setVisible    (true);
-                finalScore.setText("final score: " + game.getCurrentScore());
-            }
-            else {
+                
+                    if(scores.isHighScore(game.getCurrentScore())) {
+                    cardIMG = card.getCardBackImage();
+                    scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
+                    cardImage.setIcon(new ImageIcon(scaledCard));
+                    score_popupJPanel.setVisible(true);
+                    score_popup_name.setVisible(true);
+                    score_popup_title.setVisible(true);
+                    saveScoreJbutton.setVisible (true);
+                    score_popup_name.setVisible(true);
+                    score_popup_title.setVisible(true);
+                    namefield.setVisible        (true);                   
+                } else {
+                    restartButton.setVisible    (true);
+                }              
+                    finalScore.setText("final score: " + game.getCurrentScore());               
+        } else {
                 score.setText(game.getCurrentScore() + "");
             } 
         
@@ -205,12 +254,28 @@ public class gamePanel_highLow extends javax.swing.JPanel {
                 text_cardBe.setVisible      (false);
                 text_Score.setVisible       (false);
                 score.setVisible            (false);
-                finalScore.setVisible       (true);
-                finalScore.setText("final score: " + game.getCurrentScore());               
-            }
-            else {
-                score.setText(game.getCurrentScore() + "");
-            } 
+                finalScore.setVisible       (true);                              
+                restartButton.setText("play again?");
+                
+                if(scores.isHighScore(game.getCurrentScore())) {
+                    cardIMG = card.getCardBackImage();
+                    scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
+                    cardImage.setIcon(new ImageIcon(scaledCard));
+                    score_popupJPanel.setVisible(true);
+                    score_popup_name.setVisible(true);
+                    score_popup_title.setVisible(true);
+                    saveScoreJbutton.setVisible (true);
+                    score_popup_name.setVisible(true);
+                    score_popup_title.setVisible(true);
+                    namefield.setVisible        (true);                  
+                } else {
+                    restartButton.setVisible    (true);
+                }              
+                    finalScore.setText("final score: " + game.getCurrentScore());
+                }
+                else {
+                    score.setText(game.getCurrentScore() + "");
+                } 
         
         Card card = game.getCurrentCard();        
         BufferedImage cardIMG = card.getCardImage();
@@ -243,15 +308,25 @@ public class gamePanel_highLow extends javax.swing.JPanel {
     }//GEN-LAST:event_restartButtonActionPerformed
 
     private void saveScoreJbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveScoreJbuttonActionPerformed
-        // TODO add your handling code here:
+        scores.addScore(namefield.getText(), game.getCurrentScore());
+        score_popupJPanel.setVisible(false);
+        saveScoreJbutton.setVisible (false);
+        namefield.setVisible        (false);
+        restartButton.setVisible    (true);
+        System.out.print(scores.getHighscoreString());
     }//GEN-LAST:event_saveScoreJbuttonActionPerformed
 
     private void namefieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namefieldActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_namefieldActionPerformed
+
+    private void backToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToMenuActionPerformed
+        show_main_menu();
+    }//GEN-LAST:event_backToMenuActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backToMenu;
     private javax.swing.JLabel cardImage;
     private javax.swing.JLabel currentCard;
     private javax.swing.JLabel finalScore;
@@ -262,6 +337,8 @@ public class gamePanel_highLow extends javax.swing.JPanel {
     private javax.swing.JButton saveScoreJbutton;
     private javax.swing.JLabel score;
     private javax.swing.JPanel score_popupJPanel;
+    private javax.swing.JLabel score_popup_name;
+    private javax.swing.JLabel score_popup_title;
     private javax.swing.JLabel text_Score;
     private javax.swing.JLabel text_cardBe;
     private javax.swing.JLabel text_or;

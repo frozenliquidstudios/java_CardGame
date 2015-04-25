@@ -93,8 +93,8 @@ public class highLow {
             }
         currentCard = nextCard;
         return gameOver;
-    }  
-    
+    }
+  
 }
 
 
