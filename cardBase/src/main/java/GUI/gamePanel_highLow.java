@@ -18,8 +18,7 @@ public class gamePanel_highLow extends javax.swing.JPanel {
     private highLow game = new highLow();
     private HighScoreManager scores = new HighScoreManager();
     private boolean playedGame;
-    
-    
+        
     /**
      * Initializes the game view and makes restart button invisible
      */
@@ -40,10 +39,26 @@ public class gamePanel_highLow extends javax.swing.JPanel {
         score_popup_name.setVisible (false);
         score_popup_title.setVisible(false);
         finalScore.setVisible       (true);
-        restartButton.setText("start playing!");
+        restartButton.setText       ("start playing!");
         restartButton.setVisible    (true);
+        highscores_text.setVisible  (true);
+        updateHighScoreList();
+        highscores_list.setVisible  (true);    
     }
-
+    
+    private void updateHighScoreList() {
+        highscores_list.setText("<html>" +  scores.getHighscoreString(1) + "<br><br>" + 
+                                            scores.getHighscoreString(2) + "<br><br>" + 
+                                            scores.getHighscoreString(3) + "<br><br>" + 
+                                            scores.getHighscoreString(4) + "<br><br>" + 
+                                            scores.getHighscoreString(5) + "<br><br>" + 
+                                            scores.getHighscoreString(6) + "<br><br>" + 
+                                            scores.getHighscoreString(7) + "<br><br>" + 
+                                            scores.getHighscoreString(8) + "<br><br>" + 
+                                            scores.getHighscoreString(9) + "<br><br>" + 
+                                            scores.getHighscoreString(10) + "</html>" );
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,6 +85,8 @@ public class gamePanel_highLow extends javax.swing.JPanel {
         restartButton = new javax.swing.JButton();
         score = new javax.swing.JLabel();
         backToMenu = new javax.swing.JButton();
+        highscores_text = new javax.swing.JLabel();
+        highscores_list = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(850, 550));
         setLayout(null);
@@ -191,6 +208,16 @@ public class gamePanel_highLow extends javax.swing.JPanel {
         });
         add(backToMenu);
         backToMenu.setBounds(0, 0, 90, 40);
+
+        highscores_text.setFont(new java.awt.Font("1st Sortie", 1, 48)); // NOI18N
+        highscores_text.setText("TOP 10");
+        add(highscores_text);
+        highscores_text.setBounds(10, 60, 150, 50);
+
+        highscores_list.setFont(new java.awt.Font("1st Sortie", 0, 24)); // NOI18N
+        highscores_list.setText("rank. name - score");
+        add(highscores_list);
+        highscores_list.setBounds(10, 110, 360, 410);
     }// </editor-fold>//GEN-END:initComponents
 
     private void lowerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lowerButtonActionPerformed
@@ -225,6 +252,9 @@ public class gamePanel_highLow extends javax.swing.JPanel {
                     namefield.setVisible        (true);                   
                 } else {
                     restartButton.setVisible    (true);
+                    highscores_text.setVisible  (true);
+                    updateHighScoreList();
+                    highscores_list.setVisible  (true);
                 }              
                     finalScore.setText("final score: " + game.getCurrentScore());               
         } else {
@@ -270,6 +300,9 @@ public class gamePanel_highLow extends javax.swing.JPanel {
                     namefield.setVisible        (true);                  
                 } else {
                     restartButton.setVisible    (true);
+                    highscores_text.setVisible  (true);
+                    updateHighScoreList();
+                    highscores_list.setVisible  (true);
                 }              
                     finalScore.setText("final score: " + game.getCurrentScore());
                 }
@@ -294,7 +327,9 @@ public class gamePanel_highLow extends javax.swing.JPanel {
                 text_Score.setVisible       (true);
                 score.setVisible            (true);
                 finalScore.setVisible       (false);
-                restartButton.setVisible    (false);        
+                restartButton.setVisible    (false);
+                highscores_text.setVisible  (false);
+                highscores_list.setVisible  (false);
                 playedGame = false;
                 
                 game = new highLow();
@@ -313,6 +348,10 @@ public class gamePanel_highLow extends javax.swing.JPanel {
         saveScoreJbutton.setVisible (false);
         namefield.setVisible        (false);
         restartButton.setVisible    (true);
+        highscores_text.setVisible  (true);
+        updateHighScoreList();
+        highscores_list.setVisible  (true);
+        
         System.out.print(scores.getHighscoreString());
     }//GEN-LAST:event_saveScoreJbuttonActionPerformed
 
@@ -331,6 +370,8 @@ public class gamePanel_highLow extends javax.swing.JPanel {
     private javax.swing.JLabel currentCard;
     private javax.swing.JLabel finalScore;
     private javax.swing.JButton higherButton;
+    private javax.swing.JLabel highscores_list;
+    private javax.swing.JLabel highscores_text;
     private javax.swing.JButton lowerButton;
     private javax.swing.JTextField namefield;
     private javax.swing.JButton restartButton;

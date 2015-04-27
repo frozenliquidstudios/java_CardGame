@@ -1,17 +1,7 @@
 package gameTypes;
 
 import cardBase.*;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Scanner;
 
 public class highLow {
       
@@ -58,7 +48,7 @@ public class highLow {
     /**
      * Guesses next card is higher than current card.
      * @return If correct, add 1 to correctGuesses and return 1.
-     * @return If wrong, set game over and return 0.
+     *         If wrong, set game over and return 0.
      */
     public boolean chooseHigh() {   
             
@@ -78,7 +68,7 @@ public class highLow {
     /**
      * Guesses next card is lower than current card.
      * @return If correct, add 1 to correctGuesses and return 1.
-     * @return If wrong, set game over and return 0.
+     *         If wrong, set game over and return 0.
      */
     public boolean chooseLow() {
         

@@ -3,15 +3,27 @@ package cardBase;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ *
+ * @author LiQuid
+ */
 public abstract class HandOfCards implements Comparable {
     private ArrayList hand;
-
+    
+    public HandOfCards() {
+        hand = new ArrayList();
+    }
+    
     /**
      * Adds a card to the hand.
      * @param card card to be added
      */
     public void addCard(Card card) { 
         hand.add(card);
+    }
+    
+    public ArrayList getCards() {
+        return hand;
     }
     
     /**
@@ -33,7 +45,7 @@ public abstract class HandOfCards implements Comparable {
     
     /**
      *
-     * @param card Remove card from hand according to the cards' index, if proper number is given.
+     * @param card Remove card from hand according to the cards index, if proper number is given.
      * @return the requested card
      */
     public Card removeCard( Card card ) { 
@@ -85,7 +97,7 @@ public abstract class HandOfCards implements Comparable {
      
     /**
      *
-     * @param card Checks to see if card is in hand and if it is, returns its' index.
+     * @param card Checks to see if card is in hand and if it is, returns its index.
      * @return
      */
     public int findCard(Card card) {
@@ -99,11 +111,11 @@ public abstract class HandOfCards implements Comparable {
      * @param newCard
      * @return If new card is found, replaces card and returns true.
      */
-    public boolean replaceCard(Card oldCard, Card newCard) { // Replaces oldCard with newCard from the hand.
-        int loc = findCard(oldCard); 
-        if (loc < 0)
+    public boolean replaceCard(Card oldCard, Card newCard) {
+        int location = findCard(oldCard); 
+        if (location < 0)
            return false;            
-        hand.set(loc, newCard);
+        hand.set(location, newCard);
         return true;                 
     }
     

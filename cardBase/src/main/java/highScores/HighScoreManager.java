@@ -99,8 +99,25 @@ public class HighScoreManager {
         return highscoreToString;
     }
     
-        public boolean isHighScore(int score) {
-	int maxScoresShown = 5;
+    public String getHighscoreString(int rank) {
+        String highscoreToString = "";
+        ArrayList<Score> scores;
+        scores = getScores();
+        rank--;
+        
+        if(scores.get(rank).getScore() < 10) {
+            highscoreToString += (rank+1) + ". [0" + scores.get(rank).getScore() + "] - " + scores.get(rank).getPlayerName();           
+        } else {
+            highscoreToString += (rank+1) + ". [" + scores.get(rank).getScore() + "] - " + scores.get(rank).getPlayerName();
+        }
+        
+        return highscoreToString;
+        
+    }
+    
+    
+    public boolean isHighScore(int score) {
+	int maxScoresShown = 10;
 
         ArrayList<Score> scores;
         scores = getScores();

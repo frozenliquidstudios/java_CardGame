@@ -1,3 +1,6 @@
+cardBase\CardSuitTest.class
+cardBase\HandOfCardsTest.class
 cardBase\CardDeckTest.class
 cardBase\CardTest.class
-cardBase\GameModeTest.class
+cardBase\CardValueTest.class
+gameTypes\highLowTest.class

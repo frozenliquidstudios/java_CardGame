@@ -1,21 +1,18 @@
 package GUI;
 
-import GUI.*;
-import highScores.HighScoreManager;
 import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 public class MainMenuLayout {
-    public JFrame frame = new JFrame("cardBase");
-    public static JPanel panelContainer = new JPanel();
-    public static JPanel mainMenu = new mainMenu();
-    public static JPanel game_highLow = new gamePanel_highLow();
-    
-    private static CardLayout cl = new CardLayout();
-    
+    public JFrame frame = new JFrame        ("cardBase");
+    public static JPanel panelContainer =   new JPanel();
+    public static JPanel mainMenu =         new mainMenu();
+    public static JPanel game_highLow =     new gamePanel_highLow();
+    public static JPanel game_blackJack =   new gamePanel_blackJack();
+       
+    private static CardLayout cl = new CardLayout();   
     /**
      * Initializes Main Layout components for card view
      */
@@ -23,7 +20,8 @@ public class MainMenuLayout {
         panelContainer.setLayout(cl);
         
         panelContainer.add(mainMenu, "mainMenu");
-        panelContainer.add(game_highLow, "highLow");       
+        panelContainer.add(game_highLow, "highLow");
+        panelContainer.add(game_blackJack, "blackJack");
         cl.show(panelContainer, "mainMenu");
         
         frame.add(panelContainer);
@@ -37,6 +35,10 @@ public class MainMenuLayout {
      */
     public static void button_game_highLow() {
         cl.show(panelContainer, "highLow");
+    }
+    
+        public static void button_game_blackJack() {
+        cl.show(panelContainer, "blackJack");
     }
     
     public static void show_main_menu() {

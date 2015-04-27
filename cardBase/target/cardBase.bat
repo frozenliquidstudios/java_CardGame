@@ -1,0 +1,1 @@
+:- java -jar cardBase-1.0.jar
