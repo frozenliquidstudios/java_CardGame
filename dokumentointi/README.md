@@ -1,7 +1,18 @@
-java_CardGame by Jere Hupanen
------------------------------
+# java_CardGame by Jere Hupanen - Käyttöohje
 
-Tämä on korttipeli simulaattori joka tulee olemaan eeppinen, kuin myös ensimmäinen java
-projektini.
+##Käynnistys
+Tämä on korttipeli simulaattori jossa voi pelata eri korttipelejä graafisen näkymän kautta.
+Ohjelman voi käynnistää netBeansin kautta tai .jar tiedostosta, mutta se vaatii Java käyttöympäristön.
+Pelimuodon voi valita klikkaamalla vasemmalta joko highLow tai blackJack.
 
-Let's hope all goes well.
+##Pelimuodot
+
+highLow:
+Tarkoituksena on arvata onko seuraava kortti pienempi vai isompi kuin nykyinen kortti. Jos arvaat oikein, saat pisteen. Jos arvaat väärin, peli alkaa alusta.
+Jos korttisi arvo on sama kuin seuraavan kortin arvo, peli on silti menetetty. Jos saat tarpeeksi hyvän tuloksen, voit tallentaa nimesi pistetilastoon.
+
+blackJack:
+Tarkoituksena on saada omien korttiesi arvo mahdollisimman lähelle numeroa 21. Molemmat pelaajat saavat alussa 2 korttia, jonka jälkeen pelaaja voi joko
+pitää nykyiset korttinsa, tai pyytää lisää kortteja. Vuoro vaihtuu jakajalle vasta kun pelaaja valitsee Stay vaihtoehdon. Black Jackin sääntöjen mukaisesti jakajan 
+on pakko ottaa lisää kortteja kunnes hänen korttiensa arvo ylittää 17. Jos korttien arvo ylittää 21, kierros on hävitty. Jos molempien pelaajien pisteet ovat tasan,
+tulee tasapeli. Ensimmäinen pelaaja joka saavuttaa 5 voitettua kierrosta, voittaa pelin. 

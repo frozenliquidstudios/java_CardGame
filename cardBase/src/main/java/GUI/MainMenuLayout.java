@@ -6,13 +6,14 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class MainMenuLayout {
-    public JFrame frame = new JFrame        ("cardBase");
-    public static JPanel panelContainer =   new JPanel();
-    public static JPanel mainMenu =         new mainMenu();
-    public static JPanel game_highLow =     new gamePanel_highLow();
-    public static JPanel game_blackJack =   new gamePanel_blackJack();
-       
-    private static CardLayout cl = new CardLayout();   
+
+    public JFrame frame = new JFrame        ("cardBase");   // Creates new JFrame for the entire program
+    public static JPanel panelContainer =   new JPanel();   // Makes JPanel which contains other panels, aka Card Format
+    public static JPanel mainMenu =         new mainMenu(); // Makes new MainMenu    
+    public static JPanel game_highLow =     new gamePanel_highLow();    // Initializes highLow game
+    public static JPanel game_blackJack =   new gamePanel_blackJack();  // Initializes blackJack game      
+    private static CardLayout cl = new CardLayout();    // Initializes card layout for GUI  
+    
     /**
      * Initializes Main Layout components for card view
      */
@@ -31,23 +32,29 @@ public class MainMenuLayout {
     }
     
     /**
-     * Moves to game panel if pressed
+     * Moves to highLow game panel
      */
     public static void button_game_highLow() {
         cl.show(panelContainer, "highLow");
     }
     
-        public static void button_game_blackJack() {
+    /**
+     * Moves to blackJack game panel
+     */
+    public static void button_game_blackJack() {
         cl.show(panelContainer, "blackJack");
     }
     
+    /**
+     * Moves to main menu panel
+     */
     public static void show_main_menu() {
         cl.show(panelContainer, "mainMenu");
     }
     
     /**
-     *
-     * @param args Runs main layout
+     * Main run method of the program
+     * @param args Runs main menu layout
      */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {

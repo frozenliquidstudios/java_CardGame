@@ -15,7 +15,7 @@ public class CardValue implements Comparable {
     }
     
     // All card values
-
+    
     public final static CardValue TWO   = new CardValue("Two",   "2" );
     public final static CardValue THREE = new CardValue("Three", "3" );
     public final static CardValue FOUR  = new CardValue("Four",  "4" );
@@ -29,13 +29,15 @@ public class CardValue implements Comparable {
     public final static CardValue QUEEN = new CardValue("Queen", "12");
     public final static CardValue KING  = new CardValue("King",  "13");
     public final static CardValue ACE   = new CardValue("Ace",   "14");
-
+    
+    /**
+     * @return String form of value.
+     */
     String getValue() {
         return name;
     }
     
     /**
-     *
      * @return get value acronym
      */
     public String getValueAcronym() {
@@ -43,7 +45,6 @@ public class CardValue implements Comparable {
     }
     
     /**
-     *
      * @return get value as int
      */
     public int getCardInt() {
@@ -51,19 +52,18 @@ public class CardValue implements Comparable {
     }
     
     /**
-     *
      * @return print name of value eg. Jack
      */
-      @Override
+    @Override
     public String toString() {
-      return name;
+        return name;
     }
     
     // All values in a list for comparison.
 
-        public final static java.util.List VALUES =
-      Collections.unmodifiableList( Arrays.asList( new CardValue[] { TWO, THREE, FOUR, FIVE, SIX, SEVEN,
-                                                                     EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE }));
+    public final static java.util.List VALUES =
+        Collections.unmodifiableList( Arrays.asList( new CardValue[] { TWO, THREE, FOUR, FIVE, SIX, SEVEN,
+                                                                       EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE }));
     @Override
     public int compareTo(Object otherValueObj) {
       CardValue otherValue = (CardValue) otherValueObj;

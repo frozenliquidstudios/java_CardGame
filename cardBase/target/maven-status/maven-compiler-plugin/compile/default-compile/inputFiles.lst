@@ -1,6 +1,5 @@
 C:\Users\LiQuid\java_CardGame\cardBase\src\main\java\highScores\HighScoreManager.java
 C:\Users\LiQuid\java_CardGame\cardBase\src\main\java\highScores\ScoreComparison.java
-C:\Users\LiQuid\java_CardGame\cardBase\src\main\java\gameTypes\addictionSolitaire.java
 C:\Users\LiQuid\java_CardGame\cardBase\src\main\java\gameTypes\blackJack.java
 C:\Users\LiQuid\java_CardGame\cardBase\src\main\java\gameTypes\blackJack_hand.java
 C:\Users\LiQuid\java_CardGame\cardBase\src\main\java\cardBase\CardDeck.java
@@ -10,7 +9,6 @@ C:\Users\LiQuid\java_CardGame\cardBase\src\main\java\GUI\gamePanel_highLow.java
 C:\Users\LiQuid\java_CardGame\cardBase\src\main\java\GUI\gamePanel_blackJack.java
 C:\Users\LiQuid\java_CardGame\cardBase\src\main\java\highScores\Score.java
 C:\Users\LiQuid\java_CardGame\cardBase\src\main\java\gameTypes\highLow.java
-C:\Users\LiQuid\java_CardGame\cardBase\src\main\java\GUI\gamePanel_addictionSolitaire.java
 C:\Users\LiQuid\java_CardGame\cardBase\src\main\java\GUI\mainMenu.java
 C:\Users\LiQuid\java_CardGame\cardBase\src\main\java\cardBase\Card.java
 C:\Users\LiQuid\java_CardGame\cardBase\src\main\java\cardBase\CardSuit.java

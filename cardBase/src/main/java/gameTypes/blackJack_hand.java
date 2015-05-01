@@ -6,12 +6,15 @@ import cardBase.HandOfCards;
 
 public class blackJack_hand extends HandOfCards {
     
-    private HandOfCards hand;
-    
-    public blackJack_hand() {
-        
+    /**
+     * An empty hand, filled within the games own rules accordingly.
+     */
+    public blackJack_hand() {      
     }
     
+    /**
+     * @return Evaluates value of hand.
+     */
     @Override
     public int evaluateHand() {
         int value = 0;
@@ -23,8 +26,7 @@ public class blackJack_hand extends HandOfCards {
             if ( thisValue == 14 )
                thisValue = 11;
             value += thisValue;
-        }
-        
+        }        
         return value;
     }    
 }

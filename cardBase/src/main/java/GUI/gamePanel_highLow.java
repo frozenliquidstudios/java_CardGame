@@ -2,13 +2,10 @@ package GUI;
 
 import static GUI.MainMenuLayout.show_main_menu;
 import cardBase.*;
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import gameTypes.highLow;
 import highScores.HighScoreManager;
-import java.awt.CardLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -20,12 +17,13 @@ public class gamePanel_highLow extends javax.swing.JPanel {
     private boolean playedGame;
         
     /**
-     * Initializes the game view and makes restart button invisible
+     * Initializes the game view, and makes required aspects visible.
+     * Updates high scores.
      */
     public gamePanel_highLow() {
         initComponents();
         Card card = game.getCurrentCard();
-        BufferedImage cardIMG = card.getCardBackImage();
+        BufferedImage cardIMG = backside();
         Image scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
         cardImage.setIcon(new ImageIcon(scaledCard));
         lowerButton.setVisible      (false);
@@ -42,12 +40,16 @@ public class gamePanel_highLow extends javax.swing.JPanel {
         restartButton.setText       ("start playing!");
         restartButton.setVisible    (true);
         highscores_text.setVisible  (true);
-        updateHighScoreList();
+        highscores_list.setText(updateHighScoreList());
         highscores_list.setVisible  (true);    
     }
     
-    private void updateHighScoreList() {
-        highscores_list.setText("<html>" +  scores.getHighscoreString(1) + "<br><br>" + 
+    /**
+     *
+     * @return Updated highscores as String.
+     */
+    public String updateHighScoreList() {
+        return ("<html>" +  scores.getHighscoreString(1) + "<br><br>" + 
                                             scores.getHighscoreString(2) + "<br><br>" + 
                                             scores.getHighscoreString(3) + "<br><br>" + 
                                             scores.getHighscoreString(4) + "<br><br>" + 
@@ -209,24 +211,28 @@ public class gamePanel_highLow extends javax.swing.JPanel {
         add(backToMenu);
         backToMenu.setBounds(0, 0, 90, 40);
 
-        highscores_text.setFont(new java.awt.Font("1st Sortie", 1, 48)); // NOI18N
+        highscores_text.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         highscores_text.setText("TOP 10");
         add(highscores_text);
-        highscores_text.setBounds(10, 60, 150, 50);
+        highscores_text.setBounds(10, 60, 160, 50);
 
-        highscores_list.setFont(new java.awt.Font("1st Sortie", 0, 24)); // NOI18N
-        highscores_list.setText("rank. name - score");
+        highscores_list.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        highscores_list.setText("highscoret toimii vain netbeanssissä");
         add(highscores_list);
-        highscores_list.setBounds(10, 110, 360, 410);
+        highscores_list.setBounds(20, 100, 360, 410);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Predicts next card is lower than current card. Initializes card images and checks if game is over.
+     * If choice is correct, adds to score and goes to next guess.
+     * If game is over, shows final score and updates highscores.
+     */
     private void lowerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lowerButtonActionPerformed
-        
         playedGame = game.chooseLow();
     
         if(playedGame == true) {
-                Card card = game.getCurrentCard();
-                BufferedImage cardIMG = card.getCardBackImage();
+                Card card = game.getCurrentCard();             
+                BufferedImage cardIMG = backside();
                 Image scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
                 cardImage.setIcon(new ImageIcon(scaledCard));
                 lowerButton.setVisible      (false);
@@ -240,41 +246,44 @@ public class gamePanel_highLow extends javax.swing.JPanel {
                 restartButton.setText("play again?");
                 
                     if(scores.isHighScore(game.getCurrentScore())) {
-                    cardIMG = card.getCardBackImage();
-                    scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
-                    cardImage.setIcon(new ImageIcon(scaledCard));
-                    score_popupJPanel.setVisible(true);
-                    score_popup_name.setVisible(true);
-                    score_popup_title.setVisible(true);
-                    saveScoreJbutton.setVisible (true);
-                    score_popup_name.setVisible(true);
-                    score_popup_title.setVisible(true);
-                    namefield.setVisible        (true);                   
-                } else {
-                    restartButton.setVisible    (true);
-                    highscores_text.setVisible  (true);
-                    updateHighScoreList();
-                    highscores_list.setVisible  (true);
-                }              
-                    finalScore.setText("final score: " + game.getCurrentScore());               
+                        cardIMG = backside();
+                        scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
+                        cardImage.setIcon(new ImageIcon(scaledCard));
+                        
+                        score_popupJPanel.setVisible(true);
+                        score_popup_name.setVisible (true);
+                        score_popup_title.setVisible(true);
+                        saveScoreJbutton.setVisible (true);
+                        score_popup_name.setVisible (true);
+                        score_popup_title.setVisible(true);
+                        namefield.setVisible        (true);                   
+                    } else {
+                        restartButton.setVisible    (true);
+                        highscores_text.setVisible  (true);
+                        highscores_list.setText(updateHighScoreList());
+                        highscores_list.setVisible  (true);
+                    }              
+                finalScore.setText("final score: " + game.getCurrentScore());               
         } else {
-                score.setText(game.getCurrentScore() + "");
-            } 
-        
+            score.setText(game.getCurrentScore() + "");
+          }        
         Card card = game.getCurrentCard();        
         BufferedImage cardIMG = card.getCardImage();
         Image scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
         cardImage.setIcon(new ImageIcon(scaledCard));
         currentCard.setText(game.getCurrentCard().toString() + " [" + game.getCurrentCard().getCardIntValue() + "]");                    
     }//GEN-LAST:event_lowerButtonActionPerformed
-
+     /**
+     * Predicts next card is higher than current card. Initializes card images and checks if game is over.
+     * If choice is correct, adds to score and goes to next guess.
+     * If game is over, shows final score and updates highscores.
+     */
     private void higherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_higherButtonActionPerformed
-        
         playedGame = game.chooseHigh();
     
         if(playedGame == true) {
                 Card card = game.getCurrentCard();
-                BufferedImage cardIMG = card.getCardBackImage();
+                BufferedImage cardIMG = backside();
                 Image scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
                 cardImage.setIcon(new ImageIcon(scaledCard));
                 lowerButton.setVisible      (false);
@@ -288,36 +297,36 @@ public class gamePanel_highLow extends javax.swing.JPanel {
                 restartButton.setText("play again?");
                 
                 if(scores.isHighScore(game.getCurrentScore())) {
-                    cardIMG = card.getCardBackImage();
+                    cardIMG = backside();
                     scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
                     cardImage.setIcon(new ImageIcon(scaledCard));
                     score_popupJPanel.setVisible(true);
-                    score_popup_name.setVisible(true);
+                    score_popup_name.setVisible (true);
                     score_popup_title.setVisible(true);
                     saveScoreJbutton.setVisible (true);
-                    score_popup_name.setVisible(true);
+                    score_popup_name.setVisible (true);
                     score_popup_title.setVisible(true);
                     namefield.setVisible        (true);                  
                 } else {
                     restartButton.setVisible    (true);
                     highscores_text.setVisible  (true);
-                    updateHighScoreList();
+                    highscores_list.setText(updateHighScoreList());
                     highscores_list.setVisible  (true);
                 }              
-                    finalScore.setText("final score: " + game.getCurrentScore());
-                }
-                else {
-                    score.setText(game.getCurrentScore() + "");
-                } 
+            finalScore.setText("final score: " + game.getCurrentScore());
+        } else {
+            score.setText(game.getCurrentScore() + "");
+          } 
         
         Card card = game.getCurrentCard();        
         BufferedImage cardIMG = card.getCardImage();
         Image scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
         cardImage.setIcon(new ImageIcon(scaledCard));
-        currentCard.setText(game.getCurrentCard().toString() + " [" + game.getCurrentCard().getCardIntValue() + "]");    
-        
+        currentCard.setText(game.getCurrentCard().toString() + " [" + game.getCurrentCard().getCardIntValue() + "]");           
     }//GEN-LAST:event_higherButtonActionPerformed
-
+    /**
+     * Starts new game and sets required items visible.
+     */
     private void restartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restartButtonActionPerformed
                 lowerButton.setVisible      (true);
                 higherButton.setVisible     (true);
@@ -341,7 +350,10 @@ public class gamePanel_highLow extends javax.swing.JPanel {
                 currentCard.setText(game.getCurrentCard().toString() + " [" + game.getCurrentCard().getCardIntValue() + "]");
                 score.setText(game.getCurrentScore() + "");
     }//GEN-LAST:event_restartButtonActionPerformed
-
+    
+    /**
+     * Saves new highscore and updates highscore list.
+     */
     private void saveScoreJbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveScoreJbuttonActionPerformed
         scores.addScore(namefield.getText(), game.getCurrentScore());
         score_popupJPanel.setVisible(false);
@@ -349,21 +361,33 @@ public class gamePanel_highLow extends javax.swing.JPanel {
         namefield.setVisible        (false);
         restartButton.setVisible    (true);
         highscores_text.setVisible  (true);
-        updateHighScoreList();
+        highscores_list.setText(updateHighScoreList());
         highscores_list.setVisible  (true);
-        
-        System.out.print(scores.getHighscoreString());
     }//GEN-LAST:event_saveScoreJbuttonActionPerformed
 
     private void namefieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namefieldActionPerformed
-        
+       
     }//GEN-LAST:event_namefieldActionPerformed
-
+    /**
+     * Shows main menu panel.
+     */
     private void backToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToMenuActionPerformed
         show_main_menu();
     }//GEN-LAST:event_backToMenuActionPerformed
 
-
+    /**
+     * @return Image of card backside.
+     */
+    public BufferedImage backside() {
+         BufferedImage img = null; // Initializes image as null.
+                   try {
+                        img = ImageIO.read(getClass().getResourceAsStream("/cardImages/back.png"));    // Places proper image path to img variable
+                    } catch (IOException e) {
+                        e.printStackTrace();  // Traces any errors
+                    }
+         return img;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backToMenu;
     private javax.swing.JLabel cardImage;

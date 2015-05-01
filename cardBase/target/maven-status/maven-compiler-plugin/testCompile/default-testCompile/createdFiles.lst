@@ -1,6 +1,10 @@
 cardBase\CardSuitTest.class
 cardBase\HandOfCardsTest.class
 cardBase\CardDeckTest.class
+highScores\HighScoreManagerTest.class
 cardBase\CardTest.class
+gameTypes\blackJack_handTest.class
+cardBase\HandOfCardsTest$1.class
 cardBase\CardValueTest.class
+gameTypes\blackJackTest.class
 gameTypes\highLowTest.class

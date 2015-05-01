@@ -5,18 +5,17 @@ import java.util.ArrayList;
 
 public class highLow {
       
-      private int correctGuesses;      
-      private CardDeck deck;             
-      private Card currentCard;
-      private Card nextCard;      
-      private Boolean gameOver;
+      private int       correctGuesses;      
+      private CardDeck  deck;             
+      private Card      currentCard;
+      private Card      nextCard;      
+      private Boolean   gameOver;
       private ArrayList finalScores = new ArrayList();
-      
-    
+          
     /**
      * Initializes the game
      */
-    public highLow() {
+    public highLow(){
         deck = new CardDeck();
         deck.fillDeck();
         deck.shuffleDeck();
@@ -26,14 +25,23 @@ public class highLow {
         nextCard = null;
     }
     
+    /**
+     * @return Card to be guessed upon.
+     */
     public Card getCurrentCard() {
         return currentCard;
     }
     
+    /**
+     * @return Upcoming card.
+     */
     public Card getNextCard() {
         return nextCard;
     }
 
+    /**
+     * @return Correct guesses of player during current round.
+     */
     public int getCurrentScore() {
         return correctGuesses;
     }

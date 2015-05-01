@@ -1,13 +1,14 @@
 // Aihe: 
 
-CardGame on korttipeli-kokoelma josta pelaaja voi valita haluamansa korttipelin. Ensimmäisenä lisäyksenä on yksin pelattava pasianssi-variaatio, jonka jälkeen lisää pelimuotoja voidaan lisätä. 
+CardGame on korttipeli-kokoelma josta pelaaja voi valita haluamansa korttipelin. 
+Ohjelma sisältää highLow pelin jossa pelaaja arvaa seuraavan kortin arvon joko matalammaksi tai korkeammaksi kuin nykyinen kortti. 
+Ohjelma sisältää myös blackJack pelin jossa on tarkoitus saada jaettujen korttien arvo lähemmäs 21:tä kuin jakajan kortit.
 
-Pistetilastot voitetuille ja hävityille peleille tulee myös listata, jotta pelaaja voi seurata edistymistään.
+HighLow peli sisältää pistetilastot parhaista tuloksista, jotta pelaaja voi seurata edistymistään. 
+BlackJack pelin voittaa ensimmäinen pelaaja joka voittaa 5 kierrosta.
 
-Korttien perustoiminnot ovat ykkös-prioriteetti, jonka jälkeen toimivuutta ja grafiikoita tullaan lisäämään.
 
-
-//Käyttäjät: Pelaaja, mahd. AI
+//Käyttäjät: Pelaaja, AI (blackJack dealer)
 
 Pelaajan toiminnot:
 - Pelimuodon valitseminen
@@ -16,5 +17,5 @@ Pelaajan toiminnot:
 - Tulosten tarkistaminen
 
 AI:
-- Pelin pelaaminen pelaajaa vastaan kahden pelaajan pelimuodossa sääntöjen mukaan.
+- Pelin pelaaminen pelaajaa vastaan blackJackissa sääntöjen mukaan.
 

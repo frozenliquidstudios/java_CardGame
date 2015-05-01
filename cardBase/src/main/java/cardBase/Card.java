@@ -1,20 +1,14 @@
 package cardBase;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 public class Card implements Comparable {
-    private CardSuit  suit;
-    private CardValue value;
-    private BufferedImage image;
-    private static boolean sortByValue = true;
+    private CardSuit        suit;
+    private CardValue       value;
+    private BufferedImage   image;
+    private static boolean  sortByValue = true;
     
     /**
-     *
      * @param card_suit     Suit of the card (clubs, spades, diamonds, hearts) 
      * @param card_value    Value of the card (1-14)
      * @param card_image    Image file used in GUI
@@ -26,7 +20,6 @@ public class Card implements Comparable {
     }
     
     /**
-     *
      * @return The card's suit
      */
     public CardSuit getCardSuit() {
@@ -34,7 +27,6 @@ public class Card implements Comparable {
     }
       
     /**
-     *
      * @return The card's value
      */
     public CardValue getCardValue() {
@@ -42,7 +34,6 @@ public class Card implements Comparable {
     }
     
     /**
-     *
      * @param suit  Card suit for filename
      * @param value Card value for filename
      * @return The specific filename located in cardImages folder 
@@ -52,7 +43,6 @@ public class Card implements Comparable {
     }
     
     /**
-     *
      * @return Buffered image of a specific card to be used in GUI
      */
     public BufferedImage getCardImage() {
@@ -60,24 +50,13 @@ public class Card implements Comparable {
     }
     
     /**
-     *
-     * @return get image representing back of the card
+     * @return get filename representing back of the card
      */
-    public BufferedImage getCardBackImage() {
-        
-        String imageFile = "src/main/java/cardImages/back.png";   // Stores image filename.
-                    BufferedImage img = null; // Initializes image as null.
-                    try {
-                        img = ImageIO.read(new File(imageFile));    // Places proper image path to img variable
-                    }
-                    catch (IOException e) {
-                        e.printStackTrace();  // Traces any errors
-                    }
-        return img;                   
+    public String getCardBackImage() {      
+       return "back.png"; 
     }
     
     /**
-     *
      * @return Cards value in integer form for easier comparison
      */
     public int getCardIntValue() {
@@ -85,7 +64,6 @@ public class Card implements Comparable {
     }
     
     /**
-     *
      * @return prints suit name
      */
     public String suitToString() { 
@@ -93,41 +71,42 @@ public class Card implements Comparable {
     }
     
     /**
-     *
      * @return prints card value
      */
     public String valueToString() {
         return value.getValue();
     }
     
-    public String toString() { //print card suit and value
+    public String toString() {
         return value.toString() + " of " + suit.toString();
     }
     
     /**
-     *
-     * @return
+     * @return print card suit and numerical version of value
      */
-    public String toStringWithIntegers() { //print card suit and numerical version of value
+    public String toStringWithIntegers() {
         return value.getCardInt() + " of " + suit.toString();
    }
     
     /**
-     *  card sorting aid for deck and shuffle
+     *  Card sorting by suit for deck and shuffle
      */
     public static void sortCardsBySuit() { 
             sortByValue = false;
     }
     
     /**
-     *  card sorting aid for deck and shuffle
+     *  Card sorting by value for deck and shuffle
      */
     public static void sortCardsByValue() { 
             sortByValue = true;
     }
     
+    public static Boolean getSortType() {
+        return sortByValue;
+    }
+    
     /**
-     *
      * @param card card object to compare with
      * @return compares suit and value to another card object.
      */

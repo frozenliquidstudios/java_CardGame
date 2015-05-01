@@ -1,5 +1,6 @@
 package cardBase;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -55,6 +56,20 @@ public class CardTest {
         Card card = deck.dealCard();  
         File file = new File("src/main/java/cardImages/c2.png");
         assertTrue(file.exists());
+        assertTrue(!card.getImageFilename(card.getCardSuit(), card.getCardValue()).isEmpty());
+    }
+    @Test
+    public void returnsAnImage() {
+        deck.fillDeck();  
+        Card card = deck.dealCard();  
+        assertTrue(card.getCardImage() instanceof BufferedImage);
+    }
+    
+    @Test
+    public void cardBackSideImageExists() {
+        deck.fillDeck();  
+        Card card = deck.dealCard();  
+        assertTrue(card.getCardBackImage().equals("back.png"));
     }
     @Test
     public void cardHasIntValue() {
@@ -85,6 +100,36 @@ public class CardTest {
         deck.fillDeck();
         Card card = deck.dealCard();
         assertTrue(card.sameAs(card));
+        Card card2 = deck.dealCard();
+        assertTrue(!card.sameAs(card2));
+    }
+    @Test
+    public void compareToWorks() {
+        deck.fillDeck();
+        Card card = deck.dealCard();
+        Card card2 = deck.dealCard();
+        card.sortCardsByValue();
+        card2.sortCardsByValue();
+            if(card.getCardValue() != card2.getCardValue()) {              
+                assertTrue(card.compareTo(card2) == (card.getCardIntValue() - card2.getCardIntValue()) || 
+                           card.compareTo(card2) == (card2.getCardIntValue() - card.getCardIntValue()));
+            }                  
+    }
+    
+    @Test
+    public void sortingTypeWorks() {
+        deck.fillDeck();
+        Card card = deck.dealCard();
+        card.sortCardsBySuit();
+        assertTrue(!card.getSortType());
+        card.sortCardsByValue();
+        assertTrue(card.getSortType());
+    }
+    @Test
+    public void IntPlusStringPrintWorks() {
+        deck.fillDeck();
+        Card card = deck.dealCard();
+        assertTrue(card.toStringWithIntegers().equals((int)card.getCardIntValue() + " of " + card.suitToString()));
     }
     
 }

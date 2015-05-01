@@ -11,16 +11,20 @@ import java.util.Collections;
 
 public class HighScoreManager {
 
-    private ArrayList<Score> scores;
-    private static final String fileName = "highScores.dat";
-    
-    ObjectOutputStream outputStream = null;
-    ObjectInputStream inputStream = null;
-    
+    private ArrayList<Score>    scores;
+ //  private static final String fileName    = "highScores/highScores.dat"; // Toimii .jarissa, ei testeissä
+    private static final String fileName     = "highScores.dat";
+    ObjectOutputStream          outputStream = null;
+    ObjectInputStream           inputStream  = null;
+
     public HighScoreManager() {
         scores = new ArrayList<Score>();
     }
     
+    /**
+     * Loads score file and sorts the arrayList.
+     * @return sorted array of scores.
+     */
     public ArrayList<Score> getScores() {
         loadScoreFile();
         sort();
@@ -32,15 +36,24 @@ public class HighScoreManager {
         Collections.sort(scores, comparison);
     }
     
+    /**
+     * Adds score to highscore file.
+     * @param playerName name of player
+     * @param score score achieved by player
+     */
     public void addScore(String playerName, int score) {
         loadScoreFile();
         scores.add(new Score(playerName, score));
         updateScoreFile();
     }
     
+    /**
+     * Loads highscore file and reads scores from it.
+     */
     public void loadScoreFile() {
         try {
-            inputStream = new ObjectInputStream(new FileInputStream(fileName));
+       //   inputStream = new ObjectInputStream(getClass().getResourceAsStream("/highScores/highScores.dat")); // Tämä toimii .jarissa, alempi ei.
+            inputStream = new ObjectInputStream(new FileInputStream(fileName)); // Tämä toimii netbeanssissa, ylempi ei testeissä.
             scores = (ArrayList<Score>) inputStream.readObject();
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + e.getMessage());
@@ -60,6 +73,9 @@ public class HighScoreManager {
         }
     }
     
+    /**
+     * Writes new array of scores to highscore file.
+     */
     public void updateScoreFile() {
         try {
             outputStream = new ObjectOutputStream(new FileOutputStream(fileName));
@@ -79,7 +95,11 @@ public class HighScoreManager {
             }
         }
     }
-    
+
+    /**
+     * Shows Top 5 highscores as Strings
+     * @return String of top 5
+     */
     public String getHighscoreString() {
         String highscoreToString = "";
 	int maxScoresShown = 5;
@@ -99,30 +119,35 @@ public class HighScoreManager {
         return highscoreToString;
     }
     
+    /**
+     * @param rank wanted highscore position 
+     * @return prints highscore from position shown by parameter.
+     * Adjusts a 0 to beginning of position 1-9 for sexier layout.
+     */
     public String getHighscoreString(int rank) {
         String highscoreToString = "";
         ArrayList<Score> scores;
         scores = getScores();
-        rank--;
-        
-        if(scores.get(rank).getScore() < 10) {
-            highscoreToString += (rank+1) + ". [0" + scores.get(rank).getScore() + "] - " + scores.get(rank).getPlayerName();           
-        } else {
-            highscoreToString += (rank+1) + ". [" + scores.get(rank).getScore() + "] - " + scores.get(rank).getPlayerName();
-        }
-        
-        return highscoreToString;
-        
+        rank--;       
+            if(scores.get(rank).getScore() < 10) {
+                highscoreToString += (rank+1) + ". [0" + scores.get(rank).getScore() + "] - " + scores.get(rank).getPlayerName();           
+            } else {
+                highscoreToString += (rank+1) + ". ["  + scores.get(rank).getScore() + "] - " + scores.get(rank).getPlayerName();
+            }       
+        return highscoreToString;        
     }
     
-    
+    /**
+     * Checks if parameter is within the top 10 of the highscore file.
+     * @param score to be checked
+     * @return true if is highscore, false if is not.
+     */
     public boolean isHighScore(int score) {
 	int maxScoresShown = 10;
 
         ArrayList<Score> scores;
         scores = getScores();
-
-
+        
         int x = scores.size();
         if (x > maxScoresShown) {
             x = maxScoresShown;
@@ -130,13 +155,9 @@ public class HighScoreManager {
         for(int i = 0; i < x; i++) {
             if (score > scores.get(i).getScore()) {
                 return true;
-            } else {
-            
-            }           
+            }          
         }
-         return false;
+        return false;
     }
-    
-
 }
 

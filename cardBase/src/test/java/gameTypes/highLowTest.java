@@ -11,7 +11,6 @@ import static org.junit.Assert.*;
 
 public class highLowTest {
     
-    private CardDeck deck = new CardDeck();
     private highLow game = new highLow();
     
     public highLowTest() {
@@ -35,9 +34,39 @@ public class highLowTest {
     }
 
     @Test
-    public void checkLow() {
-        deck.fillDeck();
-        Card card = deck.dealCard();
-        assertTrue(card.getCardValue().getValueAcronym().toString() != null);
+    public void getCurrentCard() {
+        assertTrue(game.getCurrentCard() instanceof Card);
     }
+    @Test
+    public void getNextCard() {
+        assertTrue(game.getNextCard() == null);
+    }
+    @Test
+    public void getCurrentScore() {
+        assertTrue(game.getCurrentScore() == 0);
+    }
+    @Test
+    public void getGameOver() {
+        assertTrue(game.getGameOver() == false);
+    }
+    @Test
+    public void gameContinuesOnHigh() {
+        boolean result = game.chooseHigh();
+            if(result == true) {
+                assertTrue(game.getGameOver() == true);
+            } else {
+                assertTrue(game.getGameOver() == false);
+                assertTrue(game.getCurrentScore() == 1); 
+            }
+    }
+    @Test
+    public void gameContinuesOnLow() {
+        boolean result = game.chooseLow();
+            if(result == true) {
+                assertTrue(game.getGameOver() == true);
+            } else {
+                assertTrue(game.getGameOver() == false);
+                assertTrue(game.getCurrentScore() == 1);
+            }
+    }    
 }

@@ -1,6 +1,5 @@
 package highScores;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 
 public class ScoreComparison implements Comparator<Score> {

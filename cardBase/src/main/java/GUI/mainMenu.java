@@ -1,29 +1,30 @@
 package GUI;
 
 import cardBase.*;
-import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public class mainMenu extends javax.swing.JPanel {
-
      private CardDeck deck = new CardDeck();
     
     /**
-     * Initializes main menu
+     * Initializes main menu and fills interactive deck shown on right side.
      */
     public mainMenu() {
+        
         initComponents();
         deck.fillDeck();
         Card card = deck.dealCard();
-        BufferedImage cardIMG = card.getCardBackImage();
+        BufferedImage cardIMG = backside();
         Image scaledCard = cardIMG.getScaledInstance( 90, 138,  java.awt.Image.SCALE_SMOOTH ) ;
         cardImage.setIcon(new ImageIcon(scaledCard));
         deck = new CardDeck();
         deck.fillDeck();
         deck.shuffleDeck();
-        cardCount.setText(deck.getRemainingCards() + ""); 
+        cardCount.setText(deck.getRemainingCards() + "");
     }
 
     /**
@@ -172,7 +173,10 @@ public class mainMenu extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Deals new card from top of interactive deck. 
+     */
     private void dealCardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dealCardBtnActionPerformed
         
         Card card = deck.dealCard();
@@ -181,32 +185,45 @@ public class mainMenu extends javax.swing.JPanel {
         cardImage.setIcon(new ImageIcon(scaledCard));
         cardCount.setText(deck.getRemainingCards() + "");
             if ( deck.getRemainingCards() == 0 ) {
-                dealCardBtn.setEnabled(false);
+                dealCardBtn.setEnabled(false); // Disables next card button if deck is empty.
                 cardCount.setText("0");
             }
     }//GEN-LAST:event_dealCardBtnActionPerformed
-
+    /**
+     * Replaces deck with new one.
+     */
     private void getFreshDeckBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getFreshDeckBtnActionPerformed
         deck = new CardDeck();
         deck.fillDeck();
         deck.shuffleDeck();
         cardCount.setText(deck.getRemainingCards() + "");
         dealCardBtn.setEnabled(true);
-
-        //Checks if file path is correct
-        /*      File file = new File("src/main/java/cardImages/c2.png");
-        System.out.println("File exists: " + file.exists());
-        System.out.println(file.getAbsolutePath()); */
     }//GEN-LAST:event_getFreshDeckBtnActionPerformed
-
+    /**
+     * Launch a blackJack game panel.
+     */
     private void play_blackJack_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_play_blackJack_buttonActionPerformed
         MainMenuLayout.button_game_blackJack();
     }//GEN-LAST:event_play_blackJack_buttonActionPerformed
-
+    /**
+     * Launch a highLow game panel.
+     */
     private void play_highLow_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_play_highLow_buttonActionPerformed
         MainMenuLayout.button_game_highLow();
     }//GEN-LAST:event_play_highLow_buttonActionPerformed
 
+    /**
+     * @return Show image of card backside.
+     */
+    public BufferedImage backside() {
+        BufferedImage img = null; // Initializes image as null.
+                   try {
+                        img = ImageIO.read(getClass().getResourceAsStream("/cardImages/back.png"));    // Places proper image path to img variable
+                    } catch (IOException e) {
+                        e.printStackTrace();  // Traces any errors
+                    }
+        return img;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CardsRemaining;

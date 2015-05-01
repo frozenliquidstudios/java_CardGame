@@ -3,13 +3,9 @@ package cardBase;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- *
- * @author LiQuid
- */
 public abstract class HandOfCards implements Comparable {
     private ArrayList hand;
-    
+
     public HandOfCards() {
         hand = new ArrayList();
     }
@@ -22,6 +18,9 @@ public abstract class HandOfCards implements Comparable {
         hand.add(card);
     }
     
+    /**
+     * @return ArraList of the cards in the hand
+     */
     public ArrayList getCards() {
         return hand;
     }
@@ -35,36 +34,28 @@ public abstract class HandOfCards implements Comparable {
     }
     
     /**
-     *
      * @param cardNumber Remove card from hand according to cardNumber.
-     * @return the requested card
      */
-    public Card removeCard( int cardNumber) {
-        return (Card) hand.remove(cardNumber);
+    public void removeCard( int cardNumber) {
+        hand.remove(cardNumber);
     }
     
     /**
-     *
      * @param card Remove card from hand according to the cards index, if proper number is given.
-     * @return the requested card
      */
-    public Card removeCard( Card card ) { 
-        int cardNumber = hand.indexOf(card);
-        if ( cardNumber < 0 )
-          return null;
-        else
-          return (Card) hand.remove(cardNumber);     
+    public void removeCard( Card card ) { 
+        if(hand.contains(card))    
+            hand.remove(card);     
     }
     
     /**
      *  Remove all cards from hand.
      */
     public void emptyHand() {
-      hand.clear();
+        hand.clear();
     }
     
     /**
-     *
      * @return Get amount of cards in hand.
      */
     public int getHandSize() {
@@ -72,11 +63,10 @@ public abstract class HandOfCards implements Comparable {
     }
     
     /**
-     *
      * @return Check if hand has cards in it.
      */
     public boolean hasCards() { 
-        return hand.isEmpty();
+        return !hand.isEmpty();
     }
     
     /**
@@ -85,31 +75,20 @@ public abstract class HandOfCards implements Comparable {
     public void sort() { 
         Collections.sort(hand);
     }
-    
-    /**
-     *
-     * @param card
-     * @return
-     */
-    public boolean containsCard(Card card) {
-        return false;
-    }
      
     /**
-     *
-     * @param card Checks to see if card is in hand and if it is, returns its index.
-     * @return
+     * @param card  Checks to see if card is in hand, 
+     * @return      if it is, returns its index.
      */
     public int findCard(Card card) {
         return hand.indexOf(card);
     }
     
     /**
-     *
      * @param oldCard   Checks if hand contains wanted oldCard.
      *                  If doesn't find, returns false.
-     * @param newCard
-     * @return If new card is found, replaces card and returns true.
+     * @param newCard   If new card is found,
+     * @return          replaces card and returns true.
      */
     public boolean replaceCard(Card oldCard, Card newCard) {
         int location = findCard(oldCard); 
@@ -126,13 +105,11 @@ public abstract class HandOfCards implements Comparable {
     }
     
     /**
-     *
      * @return Prints out cards in hand.
      */
     public abstract int evaluateHand();
     
     public String toString() { 
         return hand.toString();
-    }
-     
+    }   
 }
