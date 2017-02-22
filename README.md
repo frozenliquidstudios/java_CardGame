@@ -1,2 +1,2 @@
-# clipbank
-A clip data bank created for Tietokantasovellus course.
+# cardBase
+A Java blackjack game created using Java and Netbeans GUI interface
